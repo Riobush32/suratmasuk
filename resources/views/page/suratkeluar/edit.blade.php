@@ -14,17 +14,18 @@
     <div class="w-full flex justify-center">
         <div class="border-gray-300 border text-gray-300 p-5 rounded-xl  max-w-[1100px]">
             <div class="">
-                <legend class="text-2xl">Add Surat Keluar</legend>
+                <legend class="text-2xl">Edit Surat Keluar</legend>
                 <hr class="my-2">
             </div>
-            <form action="{{ route('storeSuratKeluar') }}" method="POST" class="" enctype="multipart/form-data">
-                @csrf
+            <form action="{{ route('updateSuratKeluar') }}" method="POST" class="" enctype="multipart/form-data">
+                @csrf @method('patch')
+                <input type="hidden" name="id" value="{{ $suratKeluar->id }}">
                 <div class="flex flex-wrap gap-4">
                     <label class="text-black form-control w-full max-w-xs">
                         <div class="label">
                             <span class="label-text text-gray-50">Nomor Surat</span>
                         </div>
-                        <input type="text" name="nomor_surat" value="{{ old('nomor_surat') }}" id="nomor_surat"
+                        <input type="text" name="nomor_surat" value="{{ $suratKeluar->nomor_surat }}" id="nomor_surat"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             placeholder="12.44.152.33.3" required />
 
@@ -33,7 +34,7 @@
                         <div class="label">
                             <span class="label-text text-gray-50">Judul Surat</span>
                         </div>
-                        <input type="text" name="judul_surat" value="{{ old('judul_surat') }}" id="judul_surat"
+                        <input type="text" name="judul_surat" value="{{ $suratKeluar->judul_surat }}" id="judul_surat"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             placeholder="12.44.152.33.3" required />
 
@@ -42,16 +43,16 @@
                         <div class="label">
                             <span class="label-text text-gray-50">Tanggal Surat</span>
                         </div>
-                        <input type="date" name="tanggal_surat" value="{{ old('tanggal_surat') }}" id="tanggal_surat"
+                        <input type="date" name="tanggal_surat" value="{{ $suratKeluar->tanggal }}" id="tanggal_surat"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             placeholder="ketua; sekertaris" required />
 
                     </label>
                     <label class="text-black form-control w-full max-w-xs">
                         <div class="label">
-                            <span class="label-text text-gray-50">Tujuan (beri tanda '-' jika kosong)</span>
+                            <span class="label-text text-gray-50">Tujuan</span>
                         </div>
-                        <input type="text" name="tujuan" value="{{ old('tujuan') }}" id="tujuan"
+                        <input type="text" name="tujuan" value="{{ $suratKeluar->tujuan }}" id="tujuan"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             placeholder="berikan tanda ';' bila lebih dari 1 inputan" required />
 
@@ -60,7 +61,7 @@
                         <div class="label">
                             <span class="label-text text-gray-50">Lampiran</span>
                         </div>
-                        <input type="text" name="lampiran" value="{{ old('lampiran') }}" id="lampiran"
+                        <input type="text" name="lampiran" value="{{ $suratKeluar->lampiran }}" id="lampiran"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             placeholder="2" required />
 
@@ -69,7 +70,7 @@
                         <div class="label">
                             <span class="label-text text-gray-50">Prihal</span>
                         </div>
-                        <input type="text" name="perihal" value="{{ old('prihal') }}" id="perihal"
+                        <input type="text" name="perihal" value="{{ $suratKeluar->perihal }}" id="perihal"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             placeholder="perihal" required />
 
@@ -81,7 +82,7 @@
                         <select
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             name="status" required>
-                            <option disabled selected value="">pilih status</option>
+                            <option  value="{{ $suratKeluar->status_id }}">{{ $suratKeluar->status->name }}</option>
                             @if (Auth::user()->role == 'admin')
                                 @forelse ($status as $item)
                                     <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -110,7 +111,7 @@
                         <select
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             name="sifat" required>
-                            <option disabled selected value="">pilih sifat surat</option>
+                            <option value="{{ $suratKeluar->sifat_id }}">{{ $suratKeluar->sifat->name }}</option>
                             @forelse ($sifat as $item)
                                 <option value="{{ $item->id }}">
                                     <span class="text-{{ $item->color }}">{{ $item->name }}</span>
@@ -128,7 +129,7 @@
                         <select
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
                             name="klasifikasi" required>
-                            <option disabled selected value="">pilih klasifikasi surat</option>
+                            <option value="{{  $suratKeluar->klasifikasi_id }}">{{ $suratKeluar->klasifikasi->name }}</option>
                             @forelse ($klasifikasi as $item)
                                 <option value="{{ $item->id }}">
                                     <span class="text-{{ $item->color }}">{{ $item->name }}</span>
@@ -143,14 +144,14 @@
                 </div>
 
                 <div class="">
-                    @include('page.suratKeluar.editor')
+                    @include('page.suratKeluar.editor-edit')
                 </div>
 
                 <div class="mt-3 text-right">
-                    <a href="{{ route('suratMasuk') }}"
+                    <a href="{{ route('suratKeluar') }}"
                         class="btn btn-primary btn-outline text-white font-light tracking-widest text-lg">cancel</a>
                     <button type="submit"
-                        class="btn btn-primary text-white font-light tracking-widest text-lg">save</button>
+                        class="btn btn-info text-white font-light tracking-widest text-lg">update</button>
                 </div>
             </form>
         </div>

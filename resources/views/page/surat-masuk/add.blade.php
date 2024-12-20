@@ -26,7 +26,7 @@
                         </div>
                         <input type="text" name="nomor_surat" value="{{ old('nomor_surat') }}" id="nomor_serat"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
-                            placeholder="name@company.com" required />
+                            placeholder="123/456/78/99" required />
 
                     </label>
                     <label class="text-black form-control w-full max-w-xs">
@@ -35,7 +35,7 @@
                         </div>
                         <input type="text" name="instansi_pengirim" value="" id="instansi_pengirim"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
-                            placeholder="12124143" required />
+                            placeholder="Kec.rawang" required />
 
                     </label>
                     <label class="text-black form-control w-full max-w-xs">
@@ -44,7 +44,7 @@
                         </div>
                         <input type="text" name="nomor_agenda" value="{{ old('nomor_agenda') }}" id="nomor_agenda"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
-                            placeholder="ketua; sekertaris" required />
+                            placeholder="001-093-55" required />
 
                     </label>
                     <label class="text-black form-control w-full max-w-xs">
@@ -53,7 +53,7 @@
                         </div>
                         <input type="date" name="tanggal_surat" value="{{ old('tanggal_surat') }}" id="tanggal_surat"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
-                            placeholder="ketua; sekertaris" required />
+                            placeholder="" required />
 
                     </label>
                     <label class="text-black form-control w-full max-w-xs">
@@ -62,7 +62,7 @@
                         </div>
                         <input type="date" name="tanggal_diterima" value="{{ old('tanggal_diterima') }}" id="tanggal_diterima"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
-                            placeholder="ketua; sekertaris" required />
+                            placeholder="" required />
 
                     </label>
                     <label class="text-black form-control w-full max-w-xs">
@@ -86,7 +86,7 @@
                         </div>
                         <input type="text" name="lampiran" value="{{ old('lampiran') }}" id="lampiran"
                             class="bg-slate-700 border focus:-rotate-3 border-gray-300 text-gray-50 invalid:text-red-400 invalid:border-red-400 transition-all text-sm rounded-lg  block w-full p-2.5"
-                            placeholder="ketua; sekertaris" required />
+                            placeholder="-" required />
 
                     </label>
                     <label class="text-black form-control w-full max-w-xs">

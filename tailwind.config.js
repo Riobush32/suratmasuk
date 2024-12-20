@@ -5,6 +5,7 @@ export default {
       "./resources/**/*.js",
       "./resources/**/*.vue",
       './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
+    //   "./node_modules/flowbite/**/*.js",
     ],
     safelist: [
         'bg-red-600',
@@ -93,12 +94,18 @@ export default {
           body: ["Itim" ],
           banner: ["Outfit"],
           logo:["Delius"],
+          times: ['"Noto Serif"', 'serif'],
         }
       },
     },
     plugins: [
         require('daisyui'),
         require('tailwind-scrollbar'),
+
+        // require('flowbite/plugin')({
+        //     wysiwyg: true,
+        // }),
+        // require('flowbite-typography'),
 
     ],
     daisyui: {

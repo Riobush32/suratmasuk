@@ -35,7 +35,7 @@ class InfoController extends Controller
         // $status = Status::all();
         // $klasifikasi = Klasifikasi::all();
         // $sifat = Sifat::all();
-        $catatan = catatanMasuk::all();
+        $catatan = catatanMasuk::where('surat_masuk_id', $id)->get();
         $active ='suratMasuk';
         return view('page.surat-masuk.info',[
             'suratMasuk' => $suratMasuk,

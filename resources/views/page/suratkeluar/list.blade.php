@@ -4,22 +4,26 @@
         modal: false,
         modalData: null,
         getDeleteUrl() {
-            return `{{ route('suratMasukDestroy', '') }}/${this.modalData}`;
+            return `{{ route('deleteSuratKeluar', '') }}/${this.modalData}`;
         }
     }">
         @if (Auth::user()->role == 'admin' || Auth::user()->role == 'staff')
-            <div class="w-full flex justify-end p-3">
+        <div class="flex gap-1 justify-end">
+            <div class=" flex justify-end p-3">
                 <div class="">
-                    <a href="{{ route('addSuratKeluar') }}" class="btn btn-primary btn-sm">Add New</a>
+                    <a href="{{ route('allTemplate') }}" class="btn btn-primary btn-sm">all template</a>
                 </div>
             </div>
+        </div>
+
         @endif
 
         <table class="table">
             <!-- head -->
             <thead class="text-white">
                 <tr>
-                    <th>Instansi Pengirim </th>
+                    <th>Judul </th>
+                    <th>Tujuan</th>
                     <th>Tanggal</th>
                     <th>Lampiran</th>
                     <th>Status</th>
@@ -33,20 +37,22 @@
                         <td>
                             <div class="flex items-center gap-3">
                                 <div>
-                                    <div class="font-bold">{{ $item->instansi_pengirim }}</div>
-                                    <div class="text-sm opacity-50">Nomor Surat - <span
+                                    <div class="font-bold">{{ $item->judul_surat }}</div>
+                                    <div class="text-sm opacity-50">Nomor Surat -<span
                                             class="text-yellow-300 opacity-100">{{ $item->nomor_surat }}</span></div>
-                                    <div class="text-sm opacity-50">Nomor Agenda - <span
-                                            class="text-fuchsia-300 opacity-100">{{ $item->nomor_agenda }}</span></div>
+                                </div>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="flex items-center gap-3">
+                                <div>
+                                    <div class="font-bold">{{ $item->tujuan }}</div>
                                 </div>
                             </div>
                         </td>
                         <td>
                             <div class="text-sm opacity-50">Tanggal Surat -
-                                <span class="text-yellow-300 opacity-100">{{ $item->tanggal_surat }}</span>
-                            </div>
-                            <div class="text-sm opacity-50">Tanggal Diterima -
-                                <span class="text-fuchsia-300 opacity-100">{{ $item->tanggal_surat }}</span>
+                                <span class="text-yellow-300 opacity-100">{{ $item->tanggal }}</span>
                             </div>
                         </td>
                         <td>
@@ -69,12 +75,10 @@
                         </td>
 
                         <th class="text-end">
-                            @if ($item->file_patch != null)
-                                <a href="{{ asset('suratmasuks/' . $item->file_patch) }}" target="_blank"
+                                <a href="{{ route('printSuratKeluar', ['id' => $item->id]) }}" target="_blank"
                                     class="btn btn-ghost btn-xs mx-1 text-lime-300 font-light">
-                                    <i class="fa-regular fa-eye"></i>
+                                    <i class="fa-solid fa-print"></i>
                                 </a>
-                            @endif
                             @php
                                 if (Auth::user()->role != 'admin') {
                                     $status = $item->status_id;
@@ -97,26 +101,15 @@
                                         <i class="fa-solid fa-share-from-square"></i>
                                     </a>
                                 @endif
-                            @endif
-
-                            @if (Auth::user()->role == 'admin')
-                                <a href="{{ route('info', ['id' => $item->id]) }}"
+                                @else
+                                <a href="{{ route('infoSuratKeluar', ['id' => $item->id]) }}"
                                     class="btn btn-ghost btn-xs mx-1 text-gray-100 font-light">
                                     <i class="fa-solid fa-share-from-square"></i>
                                 </a>
-                                <a href="{{ route('suratMasukEdit', ['id' => $item->id]) }}"
-                                    class="btn btn-ghost btn-xs mx-1 text-cyan-300 font-light">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <button @click="modal = true, modalData = {{ $item->id }}"
-                                    class="btn btn-ghost btn-xs mx-1 text-rose-300 font-light">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
                             @endif
 
-
-                            @if ($item->status->name == 'diperiksa staff')
-                                <a href="{{ route('suratMasukEdit', ['id' => $item->id]) }}"
+                            @if ($item->status->name == 'diperiksa staff' || Auth::user()->role == 'admin')
+                                <a href="{{ route('suratKeluarEdit', ['id' => $item->id]) }}"
                                     class="btn btn-ghost btn-xs mx-1 text-cyan-300 font-light">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                 </a>
@@ -134,8 +127,9 @@
             <!-- foot -->
             <tfoot class="text-white">
                 <tr>
-                    <th>Nomor Surat </th>
-                    <th>Lampiran</th>
+                    <th>Judul </th>
+                    <th>Tujuan</th>
+                    <th>Tanggal</th>
                     <th>Lampiran</th>
                     <th>Status</th>
                     <th></th>

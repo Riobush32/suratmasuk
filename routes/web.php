@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\InfoController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SettingController;
+use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
 
@@ -49,7 +50,26 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/surat-masuk/info/{id}', [InfoController::class, 'info'])->name('info');
 
         Route::get('/surat-keluar', [SuratKeluarController::class, 'index'])->name('suratKeluar');
-        Route::get('/surat-keluar/add', [SuratKeluarController::class, 'addSuratKeluar'])->name('addSuratKeluar');
+        Route::get('/surat-keluar/add/{template_id}', [SuratKeluarController::class, 'addSuratKeluar'])->name('addSuratKeluar');
+        Route::post('surat-keluar/store', [SuratKeluarController::class, 'store'])->name('storeSuratKeluar');
+        Route::get('/surat-keluar/edit/{id}', [SuratKeluarController::class, 'edit'])->name('suratKeluarEdit');
+        Route::patch('/surat-keluar/update', [SuratKeluarController::class, 'update'])->name('updateSuratKeluar');
+        Route::delete('/surat-keluar/delete/{id}', [SuratKeluarController::class, 'delete'])->name('deleteSuratKeluar');
+        Route::get('/surat-keluar/info/{id}', [SuratKeluarController::class, 'info'])->name('infoSuratKeluar');
+        Route::patch('surat-keluar/info/update/', [SuratKeluarController::class, 'updateInfo'])->name('updateInfoSuratKeluar');
+        Route::get('/surat-keluar/print/{id}', [SuratKeluarController::class, 'print'])->name('printSuratKeluar');
+
+        Route::get('/surat-keluar/template/add', [TemplateController::class, 'addTemplate'])->name('addTemplate');
+        Route::post('/surat-keluar/template',[TemplateController::class, 'storeTemplate'])->name('storeTemplate');
+        Route::get('/surat/template/{id}', [TemplateController::class, 'getTemplate'])->name('surat.template');
+        Route::get('/surat/template/', [TemplateController::class, 'getTemplateAll'])->name('allTemplate');
+        Route::get('/surat/template/edit/{id}', [TemplateController::class, 'editTemplate'])->name('editTemplate');
+        Route::patch('/surat/template/update', [TemplateController::class, 'updateTemplate'])->name('updateTemplate');
+        Route::delete('/surat/template/delete/{id}', [TemplateController::class, 'deleteTemplate'])->name('deleteTemplate');
     });
 
+});
+
+Route::get('/test', function(){
+    return view('index');
 });

@@ -22,7 +22,7 @@
                     <li><a>Item 3</a></li>
                 </ul>
             </div>
-            <a class="font-bold text-xl cursor-pointer hover:rotate-12 transition-all">daisyUi</a>
+            <a class="font-bold text-xl cursor-pointer hover:rotate-12 transition-all">Desa Panca Arga</a>
         </div>
         <div class="navbar-center hidden lg:flex">
 
@@ -36,7 +36,7 @@
         @else
             <div class="navbar-end gap-4">
                 {{-- notification  --}}
-                <div class="mr-2">
+                {{-- <div class="mr-2">
                     <div class="indicator group" @click="notif = !notif">
                         <span
                             class="indicator-item badge badge-primary text-xs border-none group-hover:bg-cyan-600 group-hover:rotate-12">12</span>
@@ -45,7 +45,7 @@
                             <i class="fa-solid fa-bell"></i>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- user  --}}
                 <div class="avatar mr-3">
                     <div @click="avatar = !avatar"

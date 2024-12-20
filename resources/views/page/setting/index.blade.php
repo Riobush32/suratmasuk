@@ -20,9 +20,9 @@
             <div class="border mt-3 border-slate-500 rounded-2xl">
                 @include('page.setting.list-klasifikasis')
             </div>
-            <div class="border mt-3 border-slate-500 rounded-2xl">
+            {{-- <div class="border mt-3 border-slate-500 rounded-2xl">
                 @include('page.setting.list-status')
-            </div>
+            </div> --}}
 
 
         </div>

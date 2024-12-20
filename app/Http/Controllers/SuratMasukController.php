@@ -34,8 +34,16 @@ class SuratMasukController extends Controller
         ];
         $data = SuratMasuk::latest()->paginate(5);
         $active = 'suratMasuk';
+        $diperiksaStaff = SuratMasuk::where('status_id', 1)->count();
+        $diperiksaSekertaris = SuratMasuk::where('status_id',2)->count();
+        $diperiksaKepala = SuratMasuk::where('status_id',3)->count();
+        $selesai = SuratMasuk::where('status_id', '4')->count();
         return view('page.surat-masuk.index',[
             'data' => $data,
+            'diperiksaStaff' => $diperiksaStaff,
+            'diperiksaSekertaris' => $diperiksaSekertaris,
+            'diperiksaKepala' => $diperiksaKepala,
+            'selesai' => $selesai,
             'active' => $active,
             'breadcrumbs' => $breadcrumbs
         ]);
@@ -90,7 +98,7 @@ class SuratMasukController extends Controller
         }else{
             // Validasi file
             $request->validate([
-                'file_patch' => 'required|mimes:pdf|max:20480', // Sesuaikan aturan validasi
+                'file_patch' => 'required|mimes:pdf,jpg,jpeg,png,gif|max:20480', // Sesuaikan aturan validasi
             ]);
             // Ambil file dari request
             $file = $request->file('file_patch');
@@ -179,7 +187,7 @@ class SuratMasukController extends Controller
 
         // Validasi file
         $request->validate([
-            'file_patch' => 'required|mimes:pdf|max:20480',
+            'file_patch' => 'required|mimes:pdf,jpg,jpeg,png,gif|max:20480',
         ]);
 
         // Hapus file lama jika ada

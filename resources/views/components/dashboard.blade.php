@@ -4,16 +4,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
+    {{-- @vite('resources/css/app.css') --}}
     {{-- icon   --}}
     <link rel="stylesheet" href="{{ asset('icons/css/all.min.css') }}">
     {{-- alpine  --}}
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    @livewireStyles
+    <link rel="stylesheet" href="{{ asset('/build/assets/quill-BzY4kI8E.css') }}">
+    <link rel="stylesheet" href="{{ asset('/build/assets/app-DbStIDiI.css ') }}">
+    <script src="{{ asset('/build/assets/editor-BbP1IzUE.js  ') }}"></script>
+    <script src="{{ asset('/build/assets/editor2-BbP1IzUE.js ') }}"></script>
 
 <body class="min-h-[100vh] font-body scrollbar scrollbar-thumb-primary">
 
     <div class="px-16 mt-2 py-3 ">
-        <div class="flex w-full justify-center">
+        <div class="flex w-full justify-center z-[9999999]">
             @include('page.admin.navbar')
         </div>
 
@@ -47,12 +52,13 @@
     </div>
 
     {{-- copyright --}}
-    <div class="w-full">
+    {{-- <div class="w-full">
         <div class="fixed z-50 rotate-90 -translate-x-60 top-80">
             @include('page.admin.copyright')
         </div>
-    </div>
-
+    </div> --}}
+    {{-- <script src="../path/to/flowbite/dist/flowbite.min.js"></script> --}}
+    {{-- @livewireScripts --}}
 </body>
 
 </html>

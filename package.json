@@ -16,6 +16,12 @@
         "vite": "^6.0"
     },
     "dependencies": {
+        "@tiptap/core": "^2.10.3",
+        "@tiptap/pm": "^2.10.3",
+        "@tiptap/starter-kit": "^2.10.3",
+        "flowbite": "^2.5.2",
+        "flowbite-typography": "^1.0.5",
+        "quill": "^2.0.3",
         "tailwind-scrollbar": "^3.1.0"
     }
 }

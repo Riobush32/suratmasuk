@@ -79,13 +79,13 @@
                                 if (Auth::user()->role != 'admin') {
                                     $status = $item->status_id;
                                     if (Auth::user()->role == 'staff') {
-                                        $petugas = 3;
+                                        $petugas = 1;
                                     }
                                     if (Auth::user()->role == 'sekertaris') {
                                         $petugas = 2;
                                     }
                                     if (Auth::user()->role == 'kepala') {
-                                        $petugas = 1;
+                                        $petugas = 3;
                                     }
                                 }
 
@@ -97,23 +97,13 @@
                                         <i class="fa-solid fa-share-from-square"></i>
                                     </a>
                                 @endif
-                            @endif
 
-                            @if (Auth::user()->role == 'admin')
+                                @else
                                 <a href="{{ route('info', ['id' => $item->id]) }}"
                                     class="btn btn-ghost btn-xs mx-1 text-gray-100 font-light">
                                     <i class="fa-solid fa-share-from-square"></i>
                                 </a>
-                                <a href="{{ route('suratMasukEdit', ['id' => $item->id]) }}"
-                                    class="btn btn-ghost btn-xs mx-1 text-cyan-300 font-light">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </a>
-                                <button @click="modal = true, modalData = {{ $item->id }}"
-                                    class="btn btn-ghost btn-xs mx-1 text-rose-300 font-light">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
                             @endif
-
 
                             @if ($item->status->name == 'diperiksa staff')
                                 <a href="{{ route('suratMasukEdit', ['id' => $item->id]) }}"

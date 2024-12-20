@@ -26,10 +26,11 @@ return new class extends Migration
                 table: 'klasifikasis',
                 indexName: 'surat_keluar_klasifikasi_id'
             );
+            $table->string('judul_surat')->nullable();
             $table->date('tanggal')->nullable();
             $table->string('perihal')->nullable();
             $table->string('lampiran')->nullable();
-            $table->string('kepada')->nullable();
+            $table->string('tujuan')->nullable();
             $table->text('isi')->nullable();
             $table->timestamps();
         });

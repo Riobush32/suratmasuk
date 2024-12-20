@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Models\ColorList;
 use App\Models\SuratMasuk;
 use App\Models\SuratKeluar;
+use App\Models\TemplateSurat;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,5 +25,8 @@ class Klasifikasi extends Model
     }
     public function surat_keluars(): HasMany {
         return $this->hasMany(SuratKeluar::class);
+    }
+    public function template_surats(): HasMany {
+        return $this->hasMany(TemplateSurat::class);
     }
 }
